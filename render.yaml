@@ -1,5 +1,5 @@
 - type: web
-  name: nextjs-static
+  name: shakesearch
   env: static
   buildCommand: yarn; yarn build; yarn next export
   staticPublishPath: out
