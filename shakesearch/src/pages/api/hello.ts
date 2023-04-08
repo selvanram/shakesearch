@@ -5,9 +5,16 @@ type Data = {
   name: string
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: 'John Doe' })
+  const query = req.query;
+  const results = await fetch(`https://pulley-shakesearch.onrender.com/search?q=${query['q']}`, {
+    method: 'GET',
+  });
+  console.log('results ----- ', results);
+  const json = await results.json();
+  console.log('json ---- ', json)
+  return res.status(200).json(json);
 }
